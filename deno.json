@@ -1,0 +1,9 @@
+{
+  "name": "@quentinadam/assert",
+  "version": "0.1.0",
+  "exports": "./assert.ts",
+  "fmt": {
+    "singleQuote": true,
+    "lineWidth": 120
+  }
+}
