@@ -2,6 +2,12 @@
   "name": "@quentinadam/assert",
   "version": "0.1.1",
   "exports": "./assert.ts",
+  "publish": {
+    "exclude": [
+      ".github/",
+      ".vscode/"
+    ]
+  },
   "fmt": {
     "singleQuote": true,
     "lineWidth": 120
