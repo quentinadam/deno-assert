@@ -1,7 +1,7 @@
 # assert
 
 [![JSR](https://jsr.io/badges/@quentinadam/assert)](https://jsr.io/@quentinadam/assert)
-[![CI](https://github.com/quentinadam/deno-assert/actions/workflows/publish.yml/badge.svg)](https://github.com/quentinadam/deno-assert/actions/workflows/publish.yml)
+[![CI](https://github.com/quentinadam/deno-assert/actions/workflows/ci.yml/badge.svg)](https://github.com/quentinadam/deno-assert/actions/workflows/ci.yml)
 
 ## Usage
 
