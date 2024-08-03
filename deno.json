@@ -1,6 +1,6 @@
 {
   "name": "@quentinadam/assert",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "exports": "./assert.ts",
   "publish": {
     "exclude": [
@@ -11,5 +11,8 @@
   "fmt": {
     "singleQuote": true,
     "lineWidth": 120
+  },
+  "tasks": {
+    "check": "deno check **/*.ts"
   }
 }
