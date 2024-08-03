@@ -1,6 +1,7 @@
 {
   "name": "@quentinadam/assert",
-  "version": "0.1.2",
+  "version": "0.1.3",
+  "description": "A simple assertion function",
   "exports": "./assert.ts",
   "publish": {
     "exclude": [
