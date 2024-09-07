@@ -1,6 +1,7 @@
 {
   "name": "@quentinadam/assert",
-  "version": "0.1.6",
+  "version": "0.1.7",
+  "license": "MIT",
   "exports": "./assert.ts",
   "publish": {
     "exclude": [
