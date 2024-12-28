@@ -1,0 +1,19 @@
+{
+  "name": "@quentinadam/assert",
+  "version": "0.1.7",
+  "description": "A simple assertion function",
+  "license": "MIT",
+  "author": "Quentin Adam",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quentinadam/deno-assert.git"
+  },
+  "type": "module",
+  "exports": "./dist/assert.js",
+  "files": [
+    "dist"
+  ],
+  "devDependencies": {
+    "typescript": "^5.7.2"
+  }
+}

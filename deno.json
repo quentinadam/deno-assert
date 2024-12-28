@@ -2,18 +2,29 @@
   "name": "@quentinadam/assert",
   "version": "0.1.7",
   "license": "MIT",
-  "exports": "./assert.ts",
+  "exports": "./src/assert.ts",
   "publish": {
+    "include": [
+      "src",
+      "README.md"
+    ],
     "exclude": [
-      ".github/",
-      ".vscode/"
+      "src/**/*.test.ts"
     ]
   },
   "fmt": {
     "singleQuote": true,
     "lineWidth": 120
   },
+  "exclude": [
+    "dist",
+    "node_modules",
+    "package-lock.json"
+  ],
   "tasks": {
-    "check": "deno check **/*.ts"
+    "test": "rm -f deno.lock && deno install",
+    "build": "rm -rf dist && tsc -b",
+    "check": "deno check src/**/*.ts",
+    "check-frozen": "deno check --frozen src/**/*.ts"
   }
 }
