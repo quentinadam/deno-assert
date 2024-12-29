@@ -116,9 +116,11 @@ const manifest = (() => {
       license: 'MIT',
       exports: require(configurationFile.exports),
       publish: { include: ['src', 'README.md'], exclude: ['**/*.test.ts'] },
-      imports: Object.fromEntries(dependencies.map(({ name, registry, version }) => {
-        return [name, `${registry}:${name}@${version}`];
-      })),
+      imports: dependencies.length > 0
+        ? Object.fromEntries(dependencies.map(({ name, registry, version }) => {
+          return [name, `${registry}:${name}@${version}`];
+        }))
+        : undefined,
     };
   }
   if (type === 'npm') {
@@ -139,7 +141,9 @@ const manifest = (() => {
         }
       })(require(configurationFile.exports)),
       files: ['dist', 'README.md'],
-      dependencies: Object.fromEntries(dependencies.map(({ name, version }) => [name, version])),
+      dependencies: dependencies.length > 0
+        ? Object.fromEntries(dependencies.map(({ name, version }) => [name, version]))
+        : undefined,
     };
   }
   throw new Error(`Invalid type ${type}`);
