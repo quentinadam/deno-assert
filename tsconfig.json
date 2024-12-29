@@ -25,5 +25,6 @@
     "skipDefaultLibCheck": false,
     "skipLibCheck": false
   },
+  "include": ["src"],
   "exclude": ["**/*.test.ts"]
 }
