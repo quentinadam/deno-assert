@@ -89,6 +89,8 @@ export default async function getExportsDependencies() {
 type ConfigurationFile = {
   name: string;
   version: string;
+  description: string;
+  license: string;
   exports?: string | Record<string, string>;
   imports?: Record<string, string>;
 };
@@ -113,7 +115,7 @@ const manifest = (() => {
     return {
       name: scopedName,
       version: require(configurationFile.version),
-      license: 'MIT',
+      license: require(configurationFile.license),
       exports: require(configurationFile.exports),
       publish: { include: ['src', 'README.md'], exclude: ['**/*.test.ts'] },
       imports: dependencies.length > 0
@@ -127,17 +129,17 @@ const manifest = (() => {
     return {
       name: scopedName,
       version: require(configurationFile.version),
-      description: 'A simple hash library that wraps npm:@noble/hashes',
-      license: 'MIT',
+      description: require(configurationFile.description),
+      license: require(configurationFile.license),
       author: 'Quentin Adam',
       repository: { type: 'git', url: `git+https://github.com/quentinadam/deno-${name}.git` },
       type: 'module',
       exports: ((exports) => {
-        const replace = (path: string) => path.replace(/^\.\/src\//, './dist/').replace(/\.ts$/, '.js');
+        const replaceFn = (path: string) => path.replace(/^\.\/src\//, './dist/').replace(/\.ts$/, '.js');
         if (typeof exports === 'string') {
-          return replace(exports);
+          return replaceFn(exports);
         } else {
-          return Object.fromEntries(Object.entries(exports).map(([key, value]) => [key, replace(value)]));
+          return Object.fromEntries(Object.entries(exports).map(([key, value]) => [key, replaceFn(value)]));
         }
       })(require(configurationFile.exports)),
       files: ['dist', 'README.md'],
