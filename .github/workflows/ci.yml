@@ -1,33 +1,37 @@
+name: CI
 on:
   push:
     branches:
       - main
 jobs:
-  check-deno:
+  ci:
+    name: CI
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      - uses: denoland/setup-deno@v2
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: Set up Deno
+        uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
-      - uses: actions/setup-node@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
-      - run: |
-          echo '
-          const jsrVersion = JSON.parse(Deno.readTextFileSync("deno.json")).version;
-          const npmVersion = JSON.parse(Deno.readTextFileSync("package.json")).version;
-          if (jsrVersion !== npmVersion) {
-            console.error(`Version mismatch: deno.json (${jsrVersion}) and package.json (${npmVersion})`);
-            process.exit(1);
-          } else {
-            console.log("Version numbers match");
-          }' | deno run --allow-read=. -
-      - run: deno fmt --check
-      - run: deno lint
-      - run: deno task check-frozen
-      - run: deno install
-      - run: deno task build
-      - run: deno publish --dry-run
-      - run: npm publish --dry-run
+      - name: Check version numbers
+        run: deno task check-version-numbers
+      - name: Format
+        run: deno fmt --check
+      - name: Lint
+        run: deno lint
+      - name: Type-check
+        run: deno task check-frozen
+      - name: Install dependencies
+        run: deno install
+      - name: Build
+        run: deno task build
+      - name: Dry run publish to JSR
+        run: deno publish --dry-run
+      - name: Dry run publish to NPM
+        run: npm publish --dry-run
