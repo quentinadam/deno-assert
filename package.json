@@ -1,6 +1,6 @@
 {
   "name": "@quentinadam/assert",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "A simple assertion function",
   "license": "MIT",
   "author": "Quentin Adam",
