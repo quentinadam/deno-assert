@@ -16,8 +16,10 @@ jobs:
         uses: denoland/setup-deno@v2
         with:
           deno-version: v2.x
+      - name: Generate jsr.json
+        run: deno run --allow-read=. --allow-run=deno scripts/generate-package-manifest.ts --type=jsr | tee jsr.json
       - name: Publish to JSR
-        run: deno publish
+        run: deno publish --config=jsr.json
   publish-npm:
     name: Publish to NPM
     runs-on: ubuntu-latest
@@ -36,10 +38,12 @@ jobs:
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
+      - name: Generate package.json
+        run: deno run --allow-read=. --allow-run=deno scripts/generate-package-manifest.ts --type=npm | tee package.json
       - name: Install dependencies
         run: deno install
       - name: Build
-        run: deno task build
+        run: deno task --eval "tsc -b"
       - name: Publish to NPM
         run: npm publish --provenance --access public
         env:

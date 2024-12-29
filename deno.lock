@@ -9,10 +9,8 @@
     }
   },
   "workspace": {
-    "packageJson": {
-      "dependencies": [
-        "npm:typescript@^5.7.2"
-      ]
-    }
+    "dependencies": [
+      "npm:typescript@^5.7.2"
+    ]
   }
 }

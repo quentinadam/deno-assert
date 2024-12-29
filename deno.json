@@ -1,30 +1,18 @@
 {
   "name": "@quentinadam/assert",
   "version": "0.1.9",
+  "description": "A simple assertion function",
   "license": "MIT",
   "exports": "./src/assert.ts",
-  "publish": {
-    "include": [
-      "src",
-      "README.md"
-    ],
-    "exclude": [
-      "src/**/*.test.ts"
-    ]
-  },
   "fmt": {
     "singleQuote": true,
     "lineWidth": 120
   },
-  "exclude": [
-    "dist",
-    "node_modules",
-    "package-lock.json"
-  ],
-  "tasks": {
-    "build": "rm -rf dist && tsc -b",
-    "check": "deno check src/**/*.ts",
-    "check-frozen": "deno check --frozen src/**/*.ts",
-    "check-version-numbers": "deno run --allow-read=. scripts/check-version-numbers.ts"
+  "compilerOptions": {
+    "noUncheckedIndexedAccess": true,
+    "noImplicitReturns": true
+  },
+  "imports": {
+    "typescript": "npm:typescript@^5.7.2"
   }
 }

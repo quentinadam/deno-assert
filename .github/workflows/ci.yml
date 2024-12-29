@@ -19,19 +19,23 @@ jobs:
         with:
           node-version: '22.x'
           registry-url: 'https://registry.npmjs.org'
-      - name: Check version numbers
-        run: deno task check-version-numbers
       - name: Format
         run: deno fmt --check
       - name: Lint
         run: deno lint
       - name: Type-check
-        run: deno task check-frozen
+        run: deno check --frozen **/*.ts
+      - name: Run tests
+        run: deno test --permit-no-files
+      - name: Generate jsr.json
+        run: deno run --allow-read=. --allow-run=deno scripts/generate-package-manifest.ts --type=jsr | tee jsr.json
+      - name: Dry run publish to JSR
+        run: deno publish --config=jsr.json --dry-run
+      - name: Generate package.json
+        run: deno run --allow-read=. --allow-run=deno scripts/generate-package-manifest.ts --type=npm | tee package.json
       - name: Install dependencies
         run: deno install
       - name: Build
-        run: deno task build
-      - name: Dry run publish to JSR
-        run: deno publish --dry-run
+        run: deno task --eval "tsc -b"
       - name: Dry run publish to NPM
         run: npm publish --dry-run
