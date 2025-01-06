@@ -3,7 +3,15 @@
   "version": "0.1.10",
   "description": "A simple assertion function",
   "license": "MIT",
+  "author": "Quentin Adam",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/quentinadam/deno-assert.git"
+  },
   "exports": "./src/assert.ts",
+  "imports": {
+    "typescript": "npm:typescript@^5.7.2"
+  },
   "fmt": {
     "singleQuote": true,
     "lineWidth": 120
@@ -11,8 +19,5 @@
   "compilerOptions": {
     "noUncheckedIndexedAccess": true,
     "noImplicitReturns": true
-  },
-  "imports": {
-    "typescript": "npm:typescript@^5.7.2"
   }
 }
