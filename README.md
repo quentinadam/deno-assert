@@ -7,18 +7,30 @@ A simple assertion function.
 ## Usage
 
 ```ts
-import assert from '@quentinadam/assert';
+import { assert, AssertionError } from '@quentinadam/assert';
 
-assert(true); // doesn't throw
+assert(1 + 1 === 2); // passes
 
-assert(false); // throws an AssertionError
+try {
+  assert(1 + 1 === 3);
+} catch (e) {
+  // throws AssertionError
+}
 
-assert(false, 'message'); // throws an AssertionError with a custom error message
+try {
+  assert(1 + 1 === 3, 'Math is broken');
+} catch (e) {
+  // throws AssertionError with custom message
+}
 
-assert(false, new Error('message')); // throws a custom Error
+try {
+  assert(1 + 1 === 3, new Error('Math is broken'));
+} catch (e) {
+  // throws a custom Error
+}
 
 const value: string | undefined = 'hello';
-assert(value !== undefined); // narrows the type of value to string;
+assert(value !== undefined); // narrows the type of value to string
 value.toUpperCase(); // works
 ```
 
